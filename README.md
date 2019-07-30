@@ -2,7 +2,7 @@
 
 ## How I ran my code
 
-### cd to project folder and activate/crean virtual env
+### cd to project folder and activate/create virtual env
 ```
 virtualenv venv
 source venv/bin/activate
@@ -46,7 +46,7 @@ So in dqn.py (and dqn_plain.py) I manually stacked and reshaped the observasions
 Output from $pip list: 
 
 pip list
-Package             Version  Location                          
+Package                 Version      Location                          
 ------------------- -------- ----------------------------------
 absl-py             0.7.1    
 astor               0.8.0    
