@@ -1,11 +1,46 @@
 # with PER, CS294-112 HW3: Q-Learning
 
-When running on devbox, I cd'ed to the folder, and did 
+## How I ran my code
+
+### cd to project folder and activate/crean virtual env
+```
+virtualenv venv
+source venv/bin/activate
+pip install tensorflow_gpu==1.12
+pip install -r requirements.txt
+```
+### After that if an error about not detecting ffmpeg shows, 
+### manually install ffmeg without sudo
+
+refer to this [link]: (https://www.johnvansickle.com/ffmpeg/faq/)
+```
+wget https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz
+tar xvf ffmpeg-git-amd64-static.tar.xz
+```
+You will get a folder named ffmpeg-git-[today’s date]-amd64-static, 
+then move ffmpeg and ffprobe inside to /venv/bin:
+
+```
+mv ffmpeg-git-[today’s date]-amd64-static/ffmpeg ffmpeg-git-20180203-amd64-static/ffprobe /venv/bin/
+
+```
+
+
+### Now it should run
+#### To alternate between vanilla and PER:
+Inside run_dqn_atari.py:
+line 139 in atari_learn(): set plain=True for vanilla and plain=False for PER
+
+#### Finally run
+```
 $ python run_dqn_atari.py
+```
 
-Update on debugging:
 
-I manually stacked and reshaped the observasions from env.
+## Bugs
+The code should print out the shape of processed frames from atari_wrappers.py
+Mine is still not working properly and shows (210, 160, 3)
+So in dqn.py (and dqn_plain.py) I manually stacked and reshaped the observasions from env.
 
 
 Output from $pip list: 

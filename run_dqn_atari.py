@@ -12,6 +12,10 @@ import dqn
 from dqn_utils import *
 from atari_wrappers import *
 
+import dqn_plain
+from dqn_utils_plain import *
+
+
 
 def atari_model(img_in, num_actions, scope, reuse=False):
     # as described in https://storage.googleapis.com/deepmind-data/assets/papers/DeepMindNature14236Paper.pdf
@@ -31,7 +35,13 @@ def atari_model(img_in, num_actions, scope, reuse=False):
 
 def atari_learn(env,
                 session,
-                num_timesteps):
+                num_timesteps, plain):
+    if plain:
+        DQN_script = dqn_plain
+    else:
+        DQN_script = dqn
+
+
     # This is just a rough estimate
     num_iterations = float(num_timesteps) / 4.0
 
@@ -61,7 +71,7 @@ def atari_learn(env,
         ], outside_value=0.01
     )
 
-    dqn.learn(
+    DQN_script.learn(
         env=env,
         q_func=atari_model,
         optimizer_spec=optimizer,
@@ -74,7 +84,7 @@ def atari_learn(env,
         learning_starts=50000,
         learning_freq=4,
         frame_history_len=4,
-        target_update_freq=1000,
+        target_update_freq=5000,
         grad_norm_clipping=10,
         double_q=False
     )
@@ -126,7 +136,7 @@ def main():
     print('random seed = %d' % seed)
     env = get_env(task, seed)
     session = get_session()
-    atari_learn(env, session, num_timesteps=2e8)
+    atari_learn(env, session, num_timesteps=2e8, plain=True)
 
 if __name__ == "__main__":
     main()
