@@ -43,7 +43,7 @@ Mine is still not working properly and shows (210, 160, 3)
 So in dqn.py (and dqn_plain.py) I manually stacked and reshaped the observasions from env.
 
 
-Output from $pip list: 
+## Output from $pip list: 
 
 pip list
 Package                 Version      Location                          
