@@ -7,4 +7,7 @@ baselines/
 __pycache__/
 ffmpeg-git-20190729-amd64-static/
 src/
-
+.DS_Store
+=0.17.1
+Pipfile
+Pipfile.lock
